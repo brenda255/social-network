@@ -33,7 +33,7 @@ const thoughtSchema = new Schema(
   }
 );
 
-const Thought = model('thought', thoughtSchema);
+const Thought = model('Thought', thoughtSchema);
 
 // Schema to create a reaction model
 const reactionSchema = new Schema(
