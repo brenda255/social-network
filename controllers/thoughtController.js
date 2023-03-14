@@ -38,7 +38,7 @@ module.exports = {
               { $pull: { thoughts: req.params.thoughtId } }
             )
               .then(() => Thought.findOneAndDelete({ _id: req.params.thoughtId }))
-              .then(() => res.json({ message: 'Thought and user deleted!' }))
+              .then(() => res.json({ message: 'Thought has been deleted!' }))
       )
       .catch((err) => res.status(500).json(err));
   },
