@@ -54,4 +54,3 @@ module.exports = {
   },
 };
 
-module.exports = thoughtControllers;
