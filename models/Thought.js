@@ -12,11 +12,6 @@ const thoughtSchema = new Schema(
       ref: 'User',
       required: true,
     },
-    course: {
-      type: Schema.Types.ObjectId,
-      ref: 'Course',
-      required: true,
-    },
     reactions: [
       {
         type: Schema.Types.ObjectId,
