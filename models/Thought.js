@@ -8,8 +8,7 @@ const thoughtSchema = new Schema(
       required: true,
     },
     user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+      type: String,
       required: true,
     },
     reactions: [
