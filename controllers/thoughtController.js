@@ -7,7 +7,7 @@ module.exports = {
       .then((thoughtData) => res.json(thoughtData))
       .catch((err) => res.status(500).json(err));
   },
-  // Get a one thought
+  // Get one thought
   getThoughtId(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
