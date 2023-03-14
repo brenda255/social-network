@@ -6,6 +6,7 @@ const {
   deleteUser,
   addThought,
   removeThought,
+  updateUser,
 } = require('../../controllers/userController');
 
 // /api/users
@@ -19,6 +20,9 @@ router.route('/:userId/thoughts').post(addThought);
 
 // /api/users/:userId/thoughts/:thoughtId
 router.route('/:userId/thoughts/:thoughtId').delete(removeThought);
+
+//update user
+router.route('/').get(getUsers).put(updateUser);
 
 module.exports = router;
 
