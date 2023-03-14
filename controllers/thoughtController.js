@@ -11,10 +11,11 @@ module.exports = {
   getThoughtId(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
+      .populate('thoughts')
       .then((thoughtData) =>
-        !course
+        !thoughtData
           ? res.status(404).json({ message: 'No thought with that ID' })
-          : res.json(course)
+          : res.json(thoughtData)
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -29,13 +30,17 @@ module.exports = {
   },
   // Delete a thought
   deleteThought(req, res) {
-    Thought.findOneAndDelete({ _id: req.params.thoughtId })
+    Thought.findOne({ _id: req.params.thoughtId })
       .then((thoughtData) =>
-        !course
+        !thoughtData
           ? res.status(404).json({ message: 'No thought with that ID' })
-          : User.deleteMany({ _id: { $in: thought.user } })
+          : User.updateMany(
+              { _id: { $in: thoughtData.username } },
+              { $pull: { thoughts: req.params.thoughtId } }
+            )
+              .then(() => Thought.findOneAndDelete({ _id: req.params.thoughtId }))
+              .then(() => res.json({ message: 'Thought and user deleted!' }))
       )
-      .then(() => res.json({ message: 'Thought and user deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
   // Update a thought
@@ -46,11 +51,10 @@ module.exports = {
       { runValidators: true, new: true }
     )
       .then((thoughtData) =>
-        !course
+        !thoughtData
           ? res.status(404).json({ message: 'No thought with this id!' })
           : res.json(thoughtData)
       )
       .catch((err) => res.status(500).json(err));
   },
 };
-
