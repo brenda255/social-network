@@ -18,4 +18,4 @@ This API allows users to create accounts, create thoughts, add reactions to thou
 This project is licensed under the terms of the MIT license.
 
 ## Visual
-![](./assets/18.mp4)
+![](./assets/18.mp4) 
